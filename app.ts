@@ -1,10 +1,12 @@
 let input:HTMLInputElement = document.querySelector(".comSepValIpt")!;
-let outputBox:HTMLInputElement = document.querySelector(".linSepValIpt")
+let outputBox:HTMLInputElement = document.querySelector(".linSepValIpt")!;
 let radio:NodeListOf<Element> = document.querySelectorAll('.form-check-input')!;
+let removeBtn:HTMLButtonElement = document.querySelector('.remove-blank')!;
 
 
 
 
+console.log(removeBtn);
 
 let changeFunction = (val:boolean = true) => {
     let c: boolean = val;
@@ -37,4 +39,17 @@ radio.forEach((e) => {
     e.addEventListener('change', (e) => {
         changeRadio(e);
     })
+})
+
+let removeBlankLines = () => {
+    let outVal:string = outputBox.value;
+    let replacedString:string =   outVal.replaceAll(/^\s*\n/gm, '')
+    outputBox.value = replacedString;
+    console.log(replacedString);
+    console.log('object')
+}
+
+
+removeBtn.addEventListener('click', () => {
+    removeBlankLines();
 })
